@@ -1,0 +1,121 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:weightSum="1"
+       android:orientation="vertical">
+       <LinearLayout
+           android:orientation="vertical"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/container1"
+           android:layout_weight="0.2"
+           android:weightSum="1">
+
+           <LinearLayout
+               android:orientation="horizontal"
+               android:weightSum="1"
+               android:layout_weight="0.3"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <ImageView
+                   android:layout_height="wrap_content"
+                   android:layout_width="wrap_content"
+                   android:id="@+id/poster"
+                   android:paddingTop="@dimen/cardview_default_elevation"
+                   android:layout_weight="0.5"/>
+
+               <LinearLayout
+                   android:orientation="vertical"
+                   android:layout_width="190dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="0.5"
+                   android:weightSum="1">
+
+                   <TextView
+                       android:layout_height="wrap_content"
+                       android:layout_width="wrap_content"
+                       android:id="@+id/title"
+                       android:layout_weight="0.6"
+                       android:textAlignment="center"
+                       android:layout_gravity="center|center_horizontal"
+                       android:textStyle="bold"
+                       android:textSize="@dimen/activity_title"
+                       android:paddingTop="@dimen/cardview_default_elevation"
+                       android:paddingLeft="@dimen/cardview_default_elevation"/>
+
+                   <TextView
+                       android:layout_height="wrap_content"
+                       android:layout_width="wrap_content"
+                       android:id="@+id/release_date"
+                       android:layout_weight="0.2"
+                       android:textSize="@dimen/activity_sub_title"
+                       android:paddingTop="@dimen/cardview_default_elevation"
+                       android:paddingLeft="@dimen/cardview_default_elevation"
+                       android:textAlignment="center"
+                       android:layout_gravity="center|center_horizontal"/>
+
+                   <ImageButton
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center|center_horizontal"
+                       app:srcCompat="@mipmap/unfavourite"
+                       android:background="@null"
+                       android:id="@+id/fav_btn"
+                       android:layout_weight="0.3" />
+               </LinearLayout>
+           </LinearLayout>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:id="@+id/plot"
+               android:layout_weight="0.7"
+               android:minLines="5"
+               android:paddingBottom="@dimen/header"
+               android:paddingTop="@dimen/header"
+               android:textSize="@dimen/activity_paragraph"/>
+
+       </LinearLayout>
+
+       <android.support.v4.app.FragmentTabHost
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_weight="0.7"
+           android:id="@+id/tab_host">
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical">
+               <TabWidget
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:id="@android:id/tabs"
+                   android:layout_weight="0"
+                   android:orientation="horizontal"
+                   android:baselineAligned="false"
+                   android:gravity="top"
+                   android:clickable="true">
+               </TabWidget>
+
+               <FrameLayout
+                   android:layout_width="0dp"
+                   android:layout_height="0dp"
+                   android:id="@android:id/tabcontent"/>
+               <FrameLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="0dp"
+                   android:layout_weight="1"
+                   android:id="@+id/realtabcontent"/>
+           </LinearLayout>
+       </android.support.v4.app.FragmentTabHost>
+   </LinearLayout>
+
+</ScrollView>

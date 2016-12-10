@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Movies</string>
+
+
+    <!--Sort Prefs-->
+    <string name="pref_sort_label" translatable="false">Sort by</string>
+    <string name="pref_sort_key" translatable="false">sort</string>
+    <string name="pref_sort_popularity" translatable="false">Most popular</string>
+    <string name="pref_sort_rating" translatable="false">Top rated</string>
+    <string-array name="pref_sort_values">
+        <item>Most popular</item>
+        <item>Top rated</item>
+    </string-array>
+
+</resources>
