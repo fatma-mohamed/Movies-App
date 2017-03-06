@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<familyset>
+
+    <!-- Font with all four styles defined -->
+    <family>
+        <nameset>
+            <name>quicksand</name>
+        </nameset>
+        <fileset>
+            <file>quicksand_regular.otf</file>
+            <file>quicksand_bold.otf</file>
+            <file>quicksand_italic.otf</file>
+            <file>quicksand_boldItalic.otf</file>
+        </fileset>
+    </family>
+
+</familyset>
