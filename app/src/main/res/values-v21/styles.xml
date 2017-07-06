@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><style name="SmokeTheme" parent="AppTheme" >
+        <item name="colorPrimary">@color/defaultPrimaryColor</item>
+        <item name="colorPrimaryDark">@color/darkPrimaryColor</item>
+        <item name="colorAccent">@color/accentColor</item>
+        <item name="android:colorBackground">@android:color/background_material_light</item>
+        <item name="android:textColorPrimary">@color/textPrimaryColor</item>
+        <item name="android:textColorSecondary">@color/secondaryTextColor</item>
+        <item name="android:colorForeground">@color/primaryTextColor</item>
+    </style></resources>
