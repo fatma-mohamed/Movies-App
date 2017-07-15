@@ -3,6 +3,8 @@ package com.example.android.movies;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.android.movies.helpers.InternetConnectionListener;
@@ -22,6 +24,14 @@ public class Posters extends AppCompatActivity implements LayoutListener{
         {
             Toast.makeText(this, "No internet connection!", Toast.LENGTH_LONG);
             setContentView(R.layout.activity_no_internet);
+            Button try_again_btn = (Button)findViewById(R.id.try_again_btn);
+            try_again_btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent t= new Intent(Posters.this,Posters.class);
+                    startActivity(t);
+                }
+            });
         }
         else
         {
