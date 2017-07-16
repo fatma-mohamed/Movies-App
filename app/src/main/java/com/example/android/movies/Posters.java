@@ -1,6 +1,9 @@
 package com.example.android.movies;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -60,11 +63,7 @@ public class Posters extends AppCompatActivity implements LayoutListener{
         //Two Pane
         else
         {
-            DetailsFragment detailsFragment = new DetailsFragment();
-            Bundle data = new Bundle();
-            data.putString("movie_name",name);
-            detailsFragment.setArguments(data);
-            getSupportFragmentManager().beginTransaction().replace(R.id.details,detailsFragment,"").commit();
+            startActivity(new Intent(this,DetailsActivity.class).putExtra("movie_name",name));
         }
     }
 }
