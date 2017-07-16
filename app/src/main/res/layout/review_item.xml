@@ -2,6 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingTop="@dimen/spacing_medium"
+    android:paddingBottom="@dimen/spacing_medium"
+    android:paddingLeft="@dimen/spacing_medium"
+    android:paddingRight="@dimen/spacing_medium"
     android:orientation="vertical">
 
     <TextView
@@ -9,8 +13,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/author"
         android:layout_weight="1"
-        android:paddingLeft="@dimen/spacing_small"
         android:textSize="@dimen/activity_paragraph"
+        android:text="title"
         android:textStyle="bold"/>
 
     <TextView
@@ -18,6 +22,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/content"
         android:layout_weight="1"
-        android:paddingLeft="@dimen/spacing_small"
-        android:textSize="@dimen/activity_paragraph" />
+        android:paddingTop="@dimen/spacing_small"
+        android:text="suntitle"
+        android:textSize="@dimen/activity_sub_title" />
 </LinearLayout>

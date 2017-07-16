@@ -32,8 +32,8 @@ public class ReviewsFragment extends Fragment implements DataDisplay{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        movie_id = getArguments().getString("movie_id");
+
+        movie_id = getArguments().getString("id");
         View rootView = inflater.inflate(R.layout.fragment_reviews, container, false);
         reviews_list = (ListView)rootView.findViewById(R.id.reviews_list);
         HashMap<String,String>[] temp = new HashMap[0];

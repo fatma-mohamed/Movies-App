@@ -37,8 +37,7 @@ public class TrailersFragment extends Fragment implements DataDisplay{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        movie_id = getArguments().getString("movie_id");
+        movie_id = getArguments().getString("id");
         final View rootView = inflater.inflate(R.layout.fragment_trailers, container, false);
         trailers_list = (ListView)rootView.findViewById(R.id.trailers_list);
         trailers_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

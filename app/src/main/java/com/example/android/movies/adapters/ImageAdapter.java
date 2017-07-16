@@ -53,6 +53,8 @@ public class ImageAdapter extends BaseAdapter {
         String url = MoviesContract.PICASSO_URL+ values[position].get("poster_path");
         Picasso.with(rowView.getContext())
                 .load(url)
+                .centerInside()
+                .resize(400,400)
                 .into(image);
         return rowView;
     }
