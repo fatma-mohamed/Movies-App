@@ -23,9 +23,12 @@ import com.example.android.movies.helpers.LayoutListener;
 
 import java.util.HashMap;
 
+import static com.example.android.movies.R.id.container;
+
 
 public class PostersFragment extends Fragment implements DataDisplay {
     private ImageAdapter adapter;
+    public Boolean favShown = false;
     private LayoutListener layoutListener;
     public static DatabaseHelper db;
     private HashMap<String,String>[] movies;
@@ -80,8 +83,10 @@ public class PostersFragment extends Fragment implements DataDisplay {
             sort_choice.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
-                    if(checkedId == R.id.fav_option)
+                    if(checkedId == R.id.fav_option) {
+                        favShown = true;
                         adapter.showFav();
+                    }
                     else if (checkedId == R.id.all_option)
                         adapter.add(movies);
                     show_dialog.cancel();
@@ -124,7 +129,6 @@ public class PostersFragment extends Fragment implements DataDisplay {
         FetchData moviesTask = new FetchData(getContext(), new MovieDetailsParser(),this, MoviesContract.MOVIE_DB_URL+ MoviesContract.MOVIE_DB_POPULAR);
         moviesTask.execute();
     }
-
 
 
     public void display(HashMap<String,String>[] results)

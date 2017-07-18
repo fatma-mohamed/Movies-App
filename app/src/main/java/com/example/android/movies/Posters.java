@@ -1,9 +1,7 @@
 package com.example.android.movies;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -43,7 +41,7 @@ public class Posters extends AppCompatActivity implements LayoutListener{
             postersFragment.setLayoutListener(this);
             if (savedInstanceState == null) {
                 getSupportFragmentManager().beginTransaction()
-                        .add(R.id.posters, postersFragment)
+                        .add(R.id.posters, postersFragment, "posters_fragment")
                         .commit();
 
                 //Check if 2 panes
@@ -65,5 +63,18 @@ public class Posters extends AppCompatActivity implements LayoutListener{
         {
             startActivity(new Intent(this,DetailsActivity.class).putExtra("movie_name",name));
         }
+    }
+
+    @Override
+    public void onBackPressed(){
+        PostersFragment fragment = (PostersFragment)getSupportFragmentManager().findFragmentByTag("posters_fragment");
+        if (fragment != null && fragment.isVisible()){
+            if (fragment.favShown) {
+                fragment.favShown = false;
+                fragment.updatePosters();
+            }
+        }
+
+
     }
 }
