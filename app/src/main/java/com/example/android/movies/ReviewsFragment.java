@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.android.movies.adapters.ReviewAdapter;
 import com.example.android.movies.data.MoviesContract;
@@ -46,6 +47,9 @@ public class ReviewsFragment extends Fragment implements DataDisplay{
     public void display(HashMap<String, String>[] results) {
         reviewAdapter.add(results);
         reviewAdapter.notifyDataSetChanged();
+        if(results.length == 0){
+            Toast.makeText(this.getContext(),"No reviews available",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

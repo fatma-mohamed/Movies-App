@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.android.movies.adapters.TrailerAdapter;
 import com.example.android.movies.data.MoviesContract;
@@ -60,6 +61,9 @@ public class TrailersFragment extends Fragment implements DataDisplay{
     public void display(HashMap<String, String>[] results) {
         trailerAdapter.add(results);
         trailerAdapter.notifyDataSetChanged();
+        if(results.length == 0){
+            Toast.makeText(this.getContext(),"No trailers available",Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
