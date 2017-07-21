@@ -73,8 +73,9 @@ public class Posters extends AppCompatActivity implements LayoutListener{
                 fragment.favShown = false;
                 fragment.updatePosters();
             }
+            else
+                this.finish();
         }
-
 
     }
 }
