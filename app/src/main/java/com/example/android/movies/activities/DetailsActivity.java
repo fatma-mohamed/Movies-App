@@ -8,12 +8,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.android.movies.R;
 import com.example.android.movies.adapters.ImageAdapter;
 import com.example.android.movies.fragments.DetailsFragment;
 import com.example.android.movies.fragments.ReviewsFragment;
 import com.example.android.movies.fragments.TrailersFragment;
+import com.example.android.movies.helpers.InternetConnectionListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +25,7 @@ public class DetailsActivity extends FragmentActivity implements ActionBar.TabLi
     HashMap<String, String> movieData;
     AppSectionsPagerAdapter mAppSectionsPagerAdapter;
     ViewPager mViewPager;
+    private static InternetConnectionListener con;
     /** ViewPager will display the three primary sections of the app, one at a
      * time.
      * */
@@ -34,6 +37,10 @@ public class DetailsActivity extends FragmentActivity implements ActionBar.TabLi
         setContentView(R.layout.activity_details);
 
         movieName = getIntent().getStringExtra("movie_name");
+        if(movieName==null){
+            movieName = getIntent().getStringExtra("widget_movie_name");
+            movieName = String.valueOf((new ImageAdapter()).getPosition(movieName));
+        }
         movieData = getData(movieName);
 
         // Create the adapter that will return a fragment for each of the three primary sections
@@ -72,6 +79,8 @@ public class DetailsActivity extends FragmentActivity implements ActionBar.TabLi
                             .setText(mAppSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+        con = new InternetConnectionListener();
+        con.onReceive(getApplicationContext(), getIntent());
     }
 
     @Override

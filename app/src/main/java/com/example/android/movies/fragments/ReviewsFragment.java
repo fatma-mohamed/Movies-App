@@ -11,8 +11,8 @@ import android.widget.Toast;
 import com.example.android.movies.R;
 import com.example.android.movies.adapters.ReviewAdapter;
 import com.example.android.movies.data.MoviesContract;
-import com.example.android.movies.helpers.DataDisplay;
-import com.example.android.movies.helpers.FetchData;
+import com.example.android.movies.interfaces.DataDisplay;
+import com.example.android.movies.data.FetchData;
 import com.example.android.movies.helpers.MovieReviewsParser;
 
 import java.util.HashMap;

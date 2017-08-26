@@ -23,15 +23,28 @@ public class MoviesProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
-        Cursor retCursor = dbHelper.getReadableDatabase().query(
-                MoviesContract.FavouriteEntry.TABLE_NAME,
-                projection,
-                selection,
-                selectionArgs,
-                null,
-                null,
-                sortOrder
-        );
+        Cursor retCursor = null;
+        if(uri.getPath().contains(MoviesContract.PATH_FAV)){
+            retCursor = dbHelper.getReadableDatabase().query(
+                    MoviesContract.FavouriteEntry.TABLE_NAME,
+                    projection,
+                    selection,
+                    selectionArgs,
+                    null,
+                    null,
+                    sortOrder
+            );}
+        else{
+            retCursor = dbHelper.getReadableDatabase().query(
+                    MoviesContract.MovieEntry.TABLE_NAME,
+                    projection,
+                    selection,
+                    selectionArgs,
+                    null,
+                    null,
+                    sortOrder
+            );
+        }
         retCursor.setNotificationUri(getContext().getContentResolver(), uri);
         return retCursor;
     }
@@ -46,12 +59,22 @@ public class MoviesProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
-        Uri returnUri;
-        long _id = db.insert(MoviesContract.FavouriteEntry.TABLE_NAME,null,values);
-        if(_id >0)
-            returnUri = MoviesContract.FavouriteEntry.buildFavouriteUri(_id);
-        else
-            throw new android.database.SQLException("Failed to insert row into " + uri);
+        Uri returnUri = null;
+        long _id = -1;
+        if(uri.getPath().contains(MoviesContract.PATH_MOV)){
+            _id = db.insert(MoviesContract.MovieEntry.TABLE_NAME,null,values);
+            if(_id >0)
+                returnUri = MoviesContract.MovieEntry.buildMovieUri(_id);
+            else
+                throw new android.database.SQLException("Failed to insert row into " + uri);
+        }
+        else if (uri.getPath().contains(MoviesContract.PATH_FAV)){
+            _id = db.insert(MoviesContract.FavouriteEntry.TABLE_NAME,null,values);
+            if(_id >0)
+                returnUri = MoviesContract.FavouriteEntry.buildFavouriteUri(_id);
+            else
+                throw new android.database.SQLException("Failed to insert row into " + uri);
+        }
         getContext().getContentResolver().notifyChange(uri, null);
         return returnUri;
     }

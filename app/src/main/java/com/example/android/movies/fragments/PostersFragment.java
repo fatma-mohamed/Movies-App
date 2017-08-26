@@ -2,6 +2,7 @@ package com.example.android.movies.fragments;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,27 +13,26 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.example.android.movies.R;
 import com.example.android.movies.adapters.ImageAdapter;
 import com.example.android.movies.data.DatabaseHelper;
-import com.example.android.movies.data.MoviesContract;
-import com.example.android.movies.helpers.DataDisplay;
-import com.example.android.movies.helpers.FetchData;
-import com.example.android.movies.helpers.MovieDetailsParser;
-import com.example.android.movies.helpers.LayoutListener;
+import com.example.android.movies.helpers.InternetConnectionListener;
+import com.example.android.movies.interfaces.DataDisplay;
+import com.example.android.movies.interfaces.LayoutListener;
+import com.example.android.movies.sync.MoviesSyncAdapter;
 
 import java.util.HashMap;
 
-import static com.example.android.movies.R.id.container;
 
-
-public class PostersFragment extends Fragment implements DataDisplay {
+public class PostersFragment extends Fragment {
     private ImageAdapter adapter;
     public Boolean favShown = false;
     private LayoutListener layoutListener;
     public static DatabaseHelper db;
     private HashMap<String,String>[] movies;
+    private InternetConnectionListener con;
 
 
     public void setLayoutListener(LayoutListener layoutListener) {
@@ -44,6 +44,8 @@ public class PostersFragment extends Fragment implements DataDisplay {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         db = new DatabaseHelper(getContext());
+        con = new InternetConnectionListener();
+        con.onReceive(this.getActivity().getApplicationContext(), this.getActivity().getIntent());
     }
 
 
@@ -112,7 +114,10 @@ public class PostersFragment extends Fragment implements DataDisplay {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String name = String.valueOf(position);
-                layoutListener.set(name);
+                if(!con.isOnline(getContext()))
+                    Toast.makeText(getContext(),"No internet connection",Toast.LENGTH_SHORT).show();
+                else
+                    layoutListener.set(name);
             }
         });
         return rootView;
@@ -122,24 +127,32 @@ public class PostersFragment extends Fragment implements DataDisplay {
     public void onStart()
     {
         super.onStart();
-        updatePosters();
+        if(!con.isOnline(this.getContext()))
+        {
+            Snackbar.make(getView(), "No internet connection",Snackbar.LENGTH_SHORT).show();
+            HashMap<String,String>[] saved_movies = db.getMovies();
+            adapter.add(db.getMovies());
+            adapter.notifyDataSetChanged();
+        }
+        else{
+            updatePosters();
+        }
     }
 
     public void updatePosters()
     {
-        FetchData moviesTask = new FetchData(getContext(), new MovieDetailsParser(),this, MoviesContract.MOVIE_DB_URL+ MoviesContract.MOVIE_DB_POPULAR);
-        moviesTask.execute();
+//        FetchData moviesTask = new FetchData(getContext(), new MovieDetailsParser(),this, MoviesContract.MOVIE_DB_URL+ MoviesContract.MOVIE_DB_POPULAR);
+//        moviesTask.execute();
+        MoviesSyncAdapter.syncImmediately(getContext());
+        adapter.add(db.getMovies());
+        adapter.notifyDataSetChanged();
     }
 
 
-    public void display(HashMap<String,String>[] results)
-    {
-        if(results!=null)
-        {
-            movies = results;
-            adapter.add(results);
-            adapter.notifyDataSetChanged();
-        }
-    }
+//    public void display(HashMap<String,String>[] results)
+//    {
+//        adapter.add(db.getMovies());
+//        adapter.notifyDataSetChanged();
+//    }
 
 }

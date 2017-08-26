@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/MyActionBar"
+    android:id="@+id/widget_container">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Most popular movie"
+        android:textSize="@dimen/activity_title_large"
+        android:textStyle="bold"
+        android:textColor="@color/gold"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/widget_margin">
+
+        <TextView
+            android:id="@+id/widget_movie_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="@dimen/activity_title"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/widget_movie_rating"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:textSize="@dimen/activity_title"
+            android:textColor="@color/gold"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:src="@drawable/gold_star"/>
+    </LinearLayout>
+</LinearLayout>

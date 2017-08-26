@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Movies</string>
-
-
+    <string name="content_authority">com.example.android.movies</string>
+    <string name="sync_account_type">movies.example.com</string>
     <!--Sort Prefs-->
     <string name="pref_sort_label" translatable="false">Sort by</string>
     <string name="pref_sort_key" translatable="false">sort</string>

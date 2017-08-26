@@ -14,11 +14,10 @@ import android.widget.Toast;
 import com.example.android.movies.R;
 import com.example.android.movies.adapters.TrailerAdapter;
 import com.example.android.movies.data.MoviesContract;
-import com.example.android.movies.helpers.DataDisplay;
-import com.example.android.movies.helpers.FetchData;
+import com.example.android.movies.interfaces.DataDisplay;
+import com.example.android.movies.data.FetchData;
 import com.example.android.movies.helpers.MovieTrailersParser;
 
-import java.net.URL;
 import java.util.HashMap;
 
 /**

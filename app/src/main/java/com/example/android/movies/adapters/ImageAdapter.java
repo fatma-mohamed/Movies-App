@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.android.movies.PostersFragment;
+import com.example.android.movies.fragments.PostersFragment;
 import com.example.android.movies.R;
 import com.example.android.movies.data.DatabaseHelper;
 import com.example.android.movies.data.MoviesContract;
@@ -75,6 +75,15 @@ public class ImageAdapter extends BaseAdapter {
         return 0;
     }
 
+    public long getPosition(String name){
+        int i=0;
+        for (HashMap<String,String> m : values){
+            if(m.get("original_title").equals(name))
+                return i;
+            ++i;
+        }
+        return -1;
+    }
 
     public void add(HashMap<String,String> [] r)
     {

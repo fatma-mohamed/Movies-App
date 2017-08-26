@@ -1,5 +1,7 @@
 package com.example.android.movies.helpers;
 
+import com.example.android.movies.interfaces.DataParser;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

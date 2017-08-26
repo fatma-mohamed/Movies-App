@@ -1,5 +1,8 @@
 package com.example.android.movies.helpers;
 
+import com.example.android.movies.fragments.PostersFragment;
+import com.example.android.movies.interfaces.DataParser;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -69,6 +72,7 @@ public class MovieDetailsParser implements DataParser {
             movieData.put(ID,id);
 
             results[i]=movieData;
+            PostersFragment.db.addMovie(movieData);
         }
 
 //        for(HashMap<String,String> m:results)

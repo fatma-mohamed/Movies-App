@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.example.android.movies.Posters">
+    tools:context="com.example.android.movies.activities.Posters">
 
     <FrameLayout
         android:id="@+id/posters"
